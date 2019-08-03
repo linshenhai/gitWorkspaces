@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snail.drug.core.mapper.CompanyMapper">
+
+    <resultMap id="company" type="com.snail.drug.core.domain.entity.Company">
+        <result column="business_license_validity" jdbcType="datetime" property="businessLicenseValidity"/>
+        <result column="business_license_no" jdbcType="varchar" property="businessLicenseNo"/>
+        <result column="code" jdbcType="varchar" property="code"/>
+        <result column="contact" jdbcType="varchar" property="contact"/>
+        <result column="contact_tel" jdbcType="varchar" property="contactTel"/>
+        <result column="create_name" jdbcType="varchar" property="createName"/>
+        <result column="create_time" jdbcType="datetime" property="createTime"/>
+        <result column="del" jdbcType="int" property="del"/>
+        <result column="email" jdbcType="varchar" property="email"/>
+        <result column="fax" jdbcType="varchar" property="fax"/>
+        <result column="file_no" jdbcType="varchar" property="fileNo"/>
+        <result column="gsp_no" jdbcType="varchar" property="gspNo"/>
+        <result column="gsp_validity" jdbcType="datetime" property="gspValidity"/>
+        <id column="id" jdbcType="bigint" property="id"/>
+        <result column="leader" jdbcType="varchar" property="leader"/>
+        <result column="legal_representative" jdbcType="varchar" property="legalRepresentative"/>
+        <result column="license_key" jdbcType="varchar" property="licenseKey"/>
+        <result column="license_validity" jdbcType="datetime" property="licenseValidity"/>
+        <result column="modify_name" jdbcType="varchar" property="modifyName"/>
+        <result column="modify_time" jdbcType="datetime" property="modifyTime"/>
+        <result column="name" jdbcType="varchar" property="name"/>
+        <result column="pharmacy_personnel" jdbcType="varchar" property="pharmacyPersonnel"/>
+        <result column="quality_leader" jdbcType="varchar" property="qualityLeader"/>
+        <result column="registered_address" jdbcType="varchar" property="registeredAddress"/>
+        <result column="short_name" jdbcType="varchar" property="shortName"/>
+        <result column="status" jdbcType="int" property="status"/>
+    </resultMap>
+</mapper>

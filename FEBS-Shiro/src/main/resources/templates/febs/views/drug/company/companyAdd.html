@@ -1,0 +1,213 @@
+<style>
+    #company-add {
+        padding: 20px 25px 25px 0;
+    }
+
+    #company-add .layui-treeSelect .ztree li a, .ztree li span {
+        margin: 0 0 2px 3px !important;
+    }
+</style>
+
+<div class="layui-fluid" id="company-add">
+    <form class="layui-form" action="" lay-filter="company-add-form">
+        <div class="layui-card">
+            <div class="layui-card-header">常规</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <label class="layui-form-label febs-form-item-require">企业名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" lay-verify="name|range" autocomplete="off" placeholder="请输入企业名称"
+                               class="layui-input" minlength="5" maxlength="50">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">企业编码</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="code" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">企业简称</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="shortName" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">企业法人</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="legalRepresentative" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">许可证号</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="licenseKey" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">状态</label>
+                    <div class="layui-input-block">
+                        <input type="radio" name="status" value="1" title="有效" checked="">
+                        <input type="radio" name="status" value="0" title="禁用">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-form-text ">
+                    <label class="layui-form-label febs-form-item-require">注册地址</label>
+                    <div class="layui-input-block">
+                        <textarea name="registeredAddress" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">人员</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">企业负责人</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="leader" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">质量负责人</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="qualityLeader" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">药学技术人</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="pharmacyPersonnel" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">电话</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="contactTel" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮箱</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="email" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">传真(Fax)</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="fax" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">证件</div>
+            <div class="layui-card-body">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">许可证</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="licenseKey" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">许可证有效期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="licenseValidity" id="licenseValidity" lay-verify="date"
+                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">营业执照号</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="businessLicenseNo" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">营业执照有效期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="businessLicenseValidity" id="businessLicenseValidity"
+                                   lay-verify="date"
+                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">GSP证号</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="gspNo" lay-verify="required" autocomplete="off"
+                                   class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label febs-form-item-require">GSP证有效期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="gspValidity" id="gspValidity" lay-verify="date"
+                                   placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item febs-hide">
+            <button class="layui-btn" lay-submit="" lay-filter="company-add-form-submit" id="submit"></button>
+            <button type="reset" class="layui-btn" id="reset"></button>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['febs', 'form', 'validate', 'laydate'], function () {
+        var $ = layui.$,
+            febs = layui.febs,
+            layer = layui.layer,
+            laydate = layui.laydate,
+            form = layui.form,
+            validate = layui.validate;
+
+        form.verify(validate);
+        form.render(null, 'febs-form-elements');
+        laydate.render({
+            elem: '#licenseValidity'
+        });
+        laydate.render({
+            elem: '#gspValidity'
+        });
+        laydate.render({
+            elem: '#businessLicenseValidity'
+        });
+
+        form.on('submit(company-add-form-submit)', function (data) {
+            febs.post(ctx + 'drug/company', data.field, function () {
+                layer.closeAll();
+                febs.alert.success('新增公司成功');
+                $('#febs-company').find('#query').click();
+            });
+            return false;
+        });
+    });
+</script>
