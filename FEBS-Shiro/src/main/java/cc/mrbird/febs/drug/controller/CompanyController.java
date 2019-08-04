@@ -5,6 +5,7 @@ import cc.mrbird.febs.common.entity.FebsConstant;
 import cc.mrbird.febs.common.controller.BaseController;
 import cc.mrbird.febs.common.entity.FebsResponse;
 import cc.mrbird.febs.common.exception.FebsException;
+import cc.mrbird.febs.system.entity.User;
 import com.google.common.base.Splitter;
 import com.snail.common.entity.QueryRequest;
 import com.snail.drug.core.domain.entity.Company;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,12 +41,22 @@ public class CompanyController extends DrugBaseController {
     private CompanyService companyService;
 
     @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company")
-    private String company(){
+    public String company(){
         return FebsUtil.view("drug/company/company");
     }
     @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company/add")
-    private String companyAdd(){
+    public String companyAdd(){
         return FebsUtil.view("drug/company/companyAdd");
+    }
+    @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company/detail/{id}")
+    public String companyDetail(@PathVariable("id") Long id, Model model){
+        Company company = companyService.getById(id);
+        model.addAttribute("company", company);
+        return FebsUtil.view("drug/company/companyDetail");
+    }
+    @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company/update")
+    public String companyUpdate(){
+        return FebsUtil.view("drug/company/companyUpdate");
     }
 
     @GetMapping("/drug/company")
@@ -71,7 +83,7 @@ public class CompanyController extends DrugBaseController {
             this.companyService.createCompany(company);
             return new FebsResponse().success();
         } catch (Exception e) {
-            String message = "新增Company失败";
+            String message = "新增Company失败:"+e.getMessage();
             log.error(message, e);
             throw new FebsException(message);
         }
@@ -88,7 +100,7 @@ public class CompanyController extends DrugBaseController {
             this.companyService.deleteCompany(ids);
             return new FebsResponse().success();
         } catch (Exception e) {
-            String message = "删除Company失败";
+            String message = "删除Company失败:"+e.getMessage();
             log.error(message, e);
             throw new FebsException(message);
         }
@@ -103,7 +115,7 @@ public class CompanyController extends DrugBaseController {
             this.companyService.updateCompany(company);
             return new FebsResponse().success();
         } catch (Exception e) {
-            String message = "修改Company失败";
+            String message = "修改Company失败:"+e.getMessage();
             log.error(message, e);
             throw new FebsException(message);
         }
@@ -117,7 +129,7 @@ public class CompanyController extends DrugBaseController {
             List<Company> companys = this.companyService.findCompanys(queryRequest, company).getRecords();
             ExcelKit.$Export(Company.class, response).downXlsx(companys, false);
         } catch (Exception e) {
-            String message = "导出Excel失败";
+            String message = "导出Excel失败:"+e.getMessage();
             log.error(message, e);
             throw new FebsException(message);
         }

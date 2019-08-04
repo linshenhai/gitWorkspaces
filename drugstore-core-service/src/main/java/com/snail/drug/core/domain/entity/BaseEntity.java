@@ -15,7 +15,7 @@ import java.util.Date;
 public class BaseEntity {
 
     /**
-     * 状态 0删除 1有效
+     * 状态 1删除 0有效
      */
     @TableField("del")
     protected Integer del;

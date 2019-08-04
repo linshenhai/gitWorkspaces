@@ -14,6 +14,15 @@ import java.util.List;
  * @date 2019-08-02 22:49:47
  */
 public interface CompanyService extends IService<Company> {
+
+
+    /**
+     * 根据编码查询公司
+     * @param code
+     * @return
+     */
+    Company getCompany(String code);
+
     /**
      * 查询（分页）
      *

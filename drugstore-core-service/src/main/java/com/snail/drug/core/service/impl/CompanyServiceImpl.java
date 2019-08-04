@@ -1,7 +1,10 @@
 package com.snail.drug.core.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.snail.common.entity.QueryRequest;
+import com.snail.common.exception.DrugException;
 import com.snail.common.session.SessionContextHolder;
+import com.snail.drug.core.costant.LogicDeleteType;
 import com.snail.drug.core.domain.entity.Company;
 import com.snail.drug.core.mapper.CompanyMapper;
 import com.snail.drug.core.service.CompanyService;
@@ -14,6 +17,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.Date;
@@ -33,6 +37,18 @@ public class CompanyServiceImpl extends BaseService<CompanyMapper, Company> impl
     private CompanyMapper companyMapper;
 
     @Override
+    public Company getCompany(String code) {
+        LambdaQueryWrapper<Company> queryWrapper = new LambdaQueryWrapper<>();
+        queryWrapper.eq(Company::getCode,code);
+        queryWrapper.eq(Company::getDel,LogicDeleteType.NO_DEL);
+        List<Company> list = this.baseMapper.selectList(queryWrapper);
+        if (CollectionUtils.isEmpty(list)){
+            return null;
+        }
+        return list.get(0);
+    }
+
+    @Override
     public IPage<Company> findCompanys(QueryRequest request, Company company) {
         LambdaQueryWrapper<Company> queryWrapper = new LambdaQueryWrapper<>();
         if (!StringUtils.isEmpty(company.getName())){
@@ -41,7 +57,7 @@ public class CompanyServiceImpl extends BaseService<CompanyMapper, Company> impl
         if (!StringUtils.isEmpty(company.getLegalRepresentative())){
             queryWrapper.like(Company::getLegalRepresentative,company.getLegalRepresentative());
         }
-        queryWrapper.eq(Company::getDel,1);
+        queryWrapper.eq(Company::getDel, LogicDeleteType.NO_DEL);
         Page<Company> page = new Page<>(request.getPageNum(), request.getPageSize());
         return this.page(page, queryWrapper);
     }
@@ -56,6 +72,10 @@ public class CompanyServiceImpl extends BaseService<CompanyMapper, Company> impl
     @Override
     @Transactional
     public void createCompany(Company company) {
+        Company exitCompany = getCompany(company.getCode());
+        if (exitCompany!=null){
+            throw  new DrugException("编码已存在:"+company.getCode());
+        }
         company.recordInsert();
         this.save(company);
     }
