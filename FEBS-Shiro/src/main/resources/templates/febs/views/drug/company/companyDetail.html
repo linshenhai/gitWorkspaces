@@ -35,78 +35,71 @@
     }
 
 </style>
-<ul class="site-doc-icon site-doc-anim">
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-up">从最底部往上滑入</div>
-        <div class="code">layui-anim-up</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-upbit">微微往上滑入</div>
-        <div class="code">layui-anim-upbit</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-scale">平滑放大</div>
-        <div class="code">layui-anim-scale</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-scaleSpring">弹簧式放大</div>
-        <div class="code">layui-anim-scaleSpring</div>
-    </li>
-</ul>
-<ul class="site-doc-icon site-doc-anim">
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-fadein">渐现</div>
-        <div class="code">layui-anim-fadein</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-fadeout">渐隐</div>
-        <div class="code">layui-anim-fadeout</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-rotate">360度旋转</div>
-        <div class="code">layui-anim-rotate</div>
-    </li>
-    <li>
-        <div class="layui-anim" data-anim="layui-anim-rotate layui-anim-loop">循环动画</div>
-        <div class="code">追加：layui-anim-loop</div>
-    </li>
-</ul>
 <div class="layui-fluid" id="febs-company-detail" lay-title="公司信息">
     <div id="company-info-wrapper">
-        <ul class="site-doc-icon site-doc-anim">
-            <li>
-                <div class="layui-anim" data-anim="layui-anim-fadein">[[${company.code}]]</div>
-            </li>
-        </ul>
         <div id="company-img">
-
         </div>
         <div class="company-info">
-            <div><span class="layui-icon layui-icon-user"></span> 账号：
+            <div><span class="layui-icon layui-icon-trophy"></span> 名称：
                 [[${company.name}]]
             </div>
-            <div><span class="layui-icon layui-icon-trophy"></span> 角色：
-                [[${#strings.defaultString(company.id,'暂无角色信息')}]]
+            <div><span class="layui-icon layui-icon-trophy"></span> 编码：
+                [[${company.code}]]
             </div>
-            <div><span class="layui-icon layui-icon-home"></span> 部门：
-
+            <div><span class="layui-icon layui-icon-trophy"></span> 简称：
+                [[${company.shortName}]]
             </div>
-            <div><span class="layui-icon layui-icon-skin"></span> 性别：
-
+            <div><span class="layui-icon layui-icon-user"></span> 法人：
+                [[${company.legalRepresentative}]]
+            </div>
+            <div><span class="layui-icon layui-icon-password"></span> 状态：
+                [[${company.status==0?'禁用':'有效'}]]
+            </div>
+            <div><span class="layui-icon layui-icon-location"></span> 地址：
+                [[${company.registeredAddress}]]
             </div>
         </div>
         <div class="company-info">
+            <div><span class="layui-icon layui-icon-user"></span> 企业负责人：
+                [[${company.leader}]]
+            </div>
+            <div><span class="layui-icon layui-icon-user"></span> 质量负责人：
+                [[${company.qualityLeader}]]
+            </div>
+            <div><span class="layui-icon layui-icon-user"></span> 药学技术人：
+                [[${company.pharmacyPersonnel}]]
+            </div>
+            <div><span class="layui-icon layui-icon-user"></span> 联系人：
+                [[${company.contact}]]
+            </div>
             <div><span class="layui-icon layui-icon-phone"></span> 电话：
-
+                [[${company.contactTel}]]
             </div>
             <div><span class="layui-icon layui-icon-mail"></span> 邮箱：
-
+                [[${company.email}]]
             </div>
-            <div><span class="layui-icon layui-icon-time-circle"></span> 最后登录时间：
-
+            <div><span class="layui-icon ayui-icon-survey"></span> 传真(Fax)：
+                [[${company.fax}]]
             </div>
-            <div><span class="layui-icon layui-icon-read"></span> 个人简介：
-
+        </div>
+        <div class="company-info">
+            <div><span class="layui-icon layui-icon-file-b"></span> 许可证：
+                [[${company.licenseKey}]]
+            </div>
+            <div><span class="layui-icon layui-icon-date"></span> 许可证有效期：
+                [[${#strings.defaultString(company.licenseValidity,'无')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-file-b"></span> 营业执照号：
+                [[${company.businessLicenseNo}]]
+            </div>
+            <div><span class="layui-icon layui-icon-date"></span> 营业执照有效期：
+                [[${#strings.defaultString(company.businessLicenseValidity,'无')}]]
+            </div>
+            <div><span class="layui-icon layui-icon-file-b"></span> GSP证号：
+                [[${company.gspNo}]]
+            </div>
+            <div><span class="layui-icon layui-icon-date"></span> GSP证有效期：
+                [[${#strings.defaultString(company.gspValidity,'无')}]]
             </div>
         </div>
     </div>

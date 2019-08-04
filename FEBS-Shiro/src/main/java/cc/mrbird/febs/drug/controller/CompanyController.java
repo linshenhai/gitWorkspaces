@@ -9,10 +9,12 @@ import cc.mrbird.febs.system.entity.User;
 import com.google.common.base.Splitter;
 import com.snail.common.entity.QueryRequest;
 import com.snail.drug.core.domain.entity.Company;
+import com.snail.drug.core.domain.vo.CompanyVo;
 import com.snail.drug.core.service.CompanyService;
 import com.wuwenze.poi.ExcelKit;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +53,9 @@ public class CompanyController extends DrugBaseController {
     @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company/detail/{id}")
     public String companyDetail(@PathVariable("id") Long id, Model model){
         Company company = companyService.getById(id);
-        model.addAttribute("company", company);
+        CompanyVo v=new CompanyVo();
+        BeanUtils.copyProperties(company,v);
+        model.addAttribute("company", v);
         return FebsUtil.view("drug/company/companyDetail");
     }
     @GetMapping(FebsConstant.VIEW_PREFIX + "drug/company/update")
